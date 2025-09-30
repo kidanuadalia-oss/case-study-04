@@ -18,7 +18,7 @@ def ping():
         "utc_time": datetime.now(timezone.utc).isoformat()
     })
 
-@app.post("/v1/survey")
+@app.route("/v1/survey", methods=["POST"])
 def submit_survey():
     payload = request.get_json(silent=True)
     if payload is None:
@@ -39,4 +39,4 @@ def submit_survey():
     return jsonify({"status": "ok"}), 201
 
 if __name__ == "__main__":
-    app.run(port=0, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
